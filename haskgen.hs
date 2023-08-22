@@ -59,8 +59,9 @@ getExampleTwoLists =
     getListHtml ["one", "two", "three", "four", "five", "six"] ++
     getListHtml ["red", "blue", "green"]
 
--- getHeadAndTailHtml :: [String] -> String
--- getHeadAndTailHtml strings = 
+getDemonstrateListsHtml :: String
+    getTitleHtml "EX002: Demonstrate lists" ++
+    "<p>test</p>"
 
 -- MAIN CODE
 
@@ -70,6 +71,7 @@ main = do
     let html = getSitePrecontentHtml 
                 ++ getIntroHtml 
                 ++ getExampleTwoLists 
+                ++ getDemonstrateLists
                 ++ getFooterHtml "0.6" 
                 ++ getSitePostcontentHtml
     writeFile filePath html
