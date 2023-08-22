@@ -68,6 +68,15 @@ getHaskellListInfoHtml strings =
     "<li>take 3: " ++ show(take 3 strings) ++ "</li>\n" ++
     "<li>take 4: " ++ show(take 4 strings) ++ "</li>\n" ++
     "<li>take 5: " ++ show(take 5 strings) ++ "</li>\n" ++
+    "<li>drop 1: " ++ show(drop 1 strings) ++ "</li>\n" ++
+    "<li>drop 2: " ++ show(drop 2 strings) ++ "</li>\n" ++
+    "<li>drop 3: " ++ show(drop 3 strings) ++ "</li>\n" ++
+    "<li>drop 4: " ++ show(drop 4 strings) ++ "</li>\n" ++
+    "<li>drop 5: " ++ show(drop 5 strings) ++ "</li>\n" ++
+    "<li>minimum: " ++ show(minimum strings) ++ "</li>\n" ++
+    "<li>maximum: " ++ show(maximum strings) ++ "</li>\n" ++
+    "<li>\"blue\" `elem`: " ++ show("blue" `elem` strings) ++ "</li>\n" ++
+    "<li>\"Hamburg\" `elem`: " ++ show("Hamburg" `elem` strings) ++ "</li>\n" ++
     "</ul>\n"
 
 -- EXAMPLE FUNCTIONS
