@@ -1,5 +1,7 @@
 import System.IO
 
+-- SYSTEM FUNCTIONS
+
 getSitePrecontentHtml :: String
 getSitePrecontentHtml = 
     "<!DOCTYPE html>\n" ++
@@ -13,6 +15,9 @@ getSitePrecontentHtml =
     "           background-color: #aaa;\n" ++
     "           font-family: sans-serif;\n" ++
     "           padding-left: 1rem;\n" ++
+    "       }\n" ++
+    "       h2 {\n" ++
+    "           margin-bottom: -.5rem;\n" ++
     "       }\n" ++
     "   </style>\n" ++
     "</head>\n" ++
@@ -34,23 +39,37 @@ getTitleHtml :: String -> String
 getTitleHtml title = 
     "<h2>" ++ title ++ "</h2>\n"
 
-getListHtml :: String -> [String] -> String
-getListHtml title strings = 
-    getTitleHtml title ++
-    "<ul>\n" ++ concatMap (\s -> "<li>" ++ s ++ "</li>\n") strings ++ "</ul>\n"
-
 getFooterHtml :: String -> String
 getFooterHtml version = 
     "<hr/>\n" ++
     "<p>version: " ++ version ++ "</p>\n" ++
     "See also: Edward's <a href=\"https://tanguay-eu.vercel.app/howtos\">Howtos</a> and <a href=\"https://tanguay-eu.vercel.app/forays\">Forays</a>\n"
-    
+
+-- HELPER FUNCTIONS
+
+getListHtml :: [String] -> String
+getListHtml strings = 
+    "<ul>\n" ++ concatMap (\s -> "<li>" ++ s ++ "</li>\n") strings ++ "</ul>\n"
+
+-- EXAMPLE FUNCTIONS
+
+getExampleTwoLists :: String 
+getExampleTwoLists = 
+    getTitleHtml "EX001: Show two UL/LI lists" ++
+    getListHtml ["one", "two", "three", "four", "five", "six"] ++
+    getListHtml ["red", "blue", "green"]
+
+-- getHeadAndTailHtml :: [String] -> String
+-- getHeadAndTailHtml strings = 
+
+-- MAIN CODE
 
 main :: IO ()
 main = do
     let filePath = "/var/www/haskell/index.html"
-    let list1_html = getListHtml "Example: create UL/LI list from list" ["one", "two", "three", "four", "five", "six"]
-    let list2_html = getListHtml "Example: create another UL/LI list from list" ["red", "green", "blue"]
-    let footer_html = getFooterHtml "0.5"
-    let html = getSitePrecontentHtml ++ getIntroHtml ++ list1_html ++ list2_html ++ footer_html ++ getSitePostcontentHtml
+    let html = getSitePrecontentHtml 
+                ++ getIntroHtml 
+                ++ getExampleTwoLists 
+                ++ getFooterHtml "0.6" 
+                ++ getSitePostcontentHtml
     writeFile filePath html
