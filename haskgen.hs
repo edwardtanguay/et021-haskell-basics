@@ -50,6 +50,7 @@ main :: IO ()
 main = do
     let filePath = "/var/www/haskell/index.html"
     let list1_html = getListHtml "Example: create UL/LI list from list" ["one", "two", "three", "four", "five", "six"]
+    let list2_html = getListHtml "Example: create another UL/LI list from list" ["red", "green", "blue"]
     let footer_html = getFooterHtml "0.5"
-    let html = getSitePrecontentHtml ++ getIntroHtml ++ list1_html ++ footer_html ++ getSitePostcontentHtml
+    let html = getSitePrecontentHtml ++ getIntroHtml ++ list1_html ++ list2_html ++ footer_html ++ getSitePostcontentHtml
     writeFile filePath html
