@@ -1,4 +1,5 @@
 import System.IO
+import Data.List (intercalate)
 
 -- SYSTEM FUNCTIONS
 
@@ -16,8 +17,8 @@ getSitePrecontentHtml =
     "           font-family: sans-serif;\n" ++
     "           padding-left: 1rem;\n" ++
     "       }\n" ++
-    "       h2 {\n" ++
-    "           margin-bottom: -.5rem;\n" ++
+    "       ul {\n" ++
+    "           margin-top: -.5rem;\n" ++
     "       }\n" ++
     "   </style>\n" ++
     "</head>\n" ++
@@ -51,6 +52,24 @@ getListHtml :: [String] -> String
 getListHtml strings = 
     "<ul>\n" ++ concatMap (\s -> "<li>" ++ s ++ "</li>\n") strings ++ "</ul>\n"
 
+getHaskellListInfoHtml :: [String] -> String
+getHaskellListInfoHtml strings = 
+    "<p>HASKELL LIST: [\"" ++ intercalate "\",\"" strings ++ "\"]</p>\n" ++
+    "<ul>\n" ++
+    "<li>head: " ++ show(head strings) ++ "</li>\n" ++
+    "<li>tail: " ++ show(tail strings) ++ "</li>\n" ++
+    "<li>init: " ++ show(init strings) ++ "</li>\n" ++
+    "<li>last: " ++ show(last strings) ++ "</li>\n" ++
+    "<li>length: " ++ show(length strings) ++ "</li>\n" ++
+    "<li>null: " ++ show(null strings) ++ "</li>\n" ++
+    "<li>reverse: " ++ show(reverse strings) ++ "</li>\n" ++
+    "<li>take 1: " ++ show(take 1 strings) ++ "</li>\n" ++
+    "<li>take 2: " ++ show(take 2 strings) ++ "</li>\n" ++
+    "<li>take 3: " ++ show(take 3 strings) ++ "</li>\n" ++
+    "<li>take 4: " ++ show(take 4 strings) ++ "</li>\n" ++
+    "<li>take 5: " ++ show(take 5 strings) ++ "</li>\n" ++
+    "</ul>\n"
+
 -- EXAMPLE FUNCTIONS
 
 getExampleTwoLists :: String 
@@ -59,9 +78,13 @@ getExampleTwoLists =
     getListHtml ["one", "two", "three", "four", "five", "six"] ++
     getListHtml ["red", "blue", "green"]
 
-getDemonstrateListsHtml :: String
-    getTitleHtml "EX002: Demonstrate lists" ++
-    "<p>test</p>"
+getDemonstrateLists :: String
+getDemonstrateLists =
+    let colors = ["red", "blue", "purple", "orange"]
+        cities = ["Berlin", "Hamburg", "Paris", "London", "Madrid"]
+    in getTitleHtml "EX002: Demonstrate Haskell lists" ++
+    getHaskellListInfoHtml colors ++
+    getHaskellListInfoHtml cities
 
 -- MAIN CODE
 
