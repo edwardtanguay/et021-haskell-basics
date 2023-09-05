@@ -78,6 +78,7 @@ getDemonstrateRanges =
     "<ul>\n" ++
     "<li>Range [1..20] as string: " ++ getParenthesesString [1..20] ++ "</li>" ++
     "<li>Range [2, 4..20] as string: " ++ getParenthesesString [2, 4..20] ++ "</li>" ++
+    "<li>Range [3, 6..20] as string: " ++ getParenthesesString [3, 6..20] ++ "</li>" ++
     "</ul>"
 
 -- MAIN CODE
