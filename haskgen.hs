@@ -1,28 +1,8 @@
 import System.IO
 import Data.List (intercalate)
+import BaseModule
 
 -- SYSTEM FUNCTIONS
-
-getSitePrecontentHtml :: String
-getSitePrecontentHtml = 
-    "<!DOCTYPE html>\n" ++
-    "<html>\n" ++
-    "<head>\n" ++
-    "   <meta charset=\"UTF-8\">\n" ++
-    "   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n" ++
-    "   <title>Haskell-Generated Site</title>\n" ++
-    "   <style>\n" ++
-    "       body {\n" ++
-    "           background-color: #aaa;\n" ++
-    "           font-family: sans-serif;\n" ++
-    "           padding-left: 1rem;\n" ++
-    "       }\n" ++
-    "       ul {\n" ++
-    "           margin-top: -.5rem;\n" ++
-    "       }\n" ++
-    "   </style>\n" ++
-    "</head>\n" ++
-    "<body>\n"
 
 getSitePostcontentHtml :: String
 getSitePostcontentHtml = 
@@ -47,10 +27,6 @@ getFooterHtml version =
     "See also: Edward's <a href=\"https://tanguay-eu.vercel.app/howtos\">Howtos</a> and <a href=\"https://tanguay-eu.vercel.app/forays\">Forays</a>\n"
 
 -- HELPER FUNCTIONS
-
-getListHtml :: [String] -> String
-getListHtml strings = 
-    "<ul>\n" ++ concatMap (\s -> "<li>" ++ s ++ "</li>\n") strings ++ "</ul>\n"
 
 getHaskellListInfoHtml :: [String] -> String
 getHaskellListInfoHtml strings = 
@@ -95,6 +71,15 @@ getDemonstrateLists =
     getHaskellListInfoHtml colors ++
     getHaskellListInfoHtml cities
 
+getDemonstrateRanges :: String
+getDemonstrateRanges =
+    getTitleHtml "EX003: Demonstrate Haskell ranges" ++
+    "<p>NUMBER RANGES:</p>\n" ++
+    "<ul>\n" ++
+    "<li>Range [1..20] as string: " ++ getParenthesesString [1..20] ++ "</li>" ++
+    "<li>Range [2, 4..20] as string: " ++ getParenthesesString [2, 4..20] ++ "</li>" ++
+    "</ul>"
+
 -- MAIN CODE
 
 main :: IO ()
@@ -104,6 +89,7 @@ main = do
                 ++ getIntroHtml 
                 ++ getExampleTwoLists 
                 ++ getDemonstrateLists
-                ++ getFooterHtml "0.6" 
+                ++ getDemonstrateRanges
+                ++ getFooterHtml "0.7" 
                 ++ getSitePostcontentHtml
     writeFile filePath html
